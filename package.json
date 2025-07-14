@@ -1,0 +1,31 @@
+{
+  "name": "defi-tuna-analytics",
+  "version": "1.0.0",
+  "description": "A simplified, static dashboard for DeFi analytics visualization",
+  "main": "index.html",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "keywords": [
+    "defi",
+    "analytics",
+    "dashboard",
+    "solana",
+    "static"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^24.0.13",
+    "@types/react": "19.1.8",
+    "serve": "^14.2.1",
+    "typescript": "5.8.3"
+  },
+  "dependencies": {
+    "next": "^15.3.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  }
+}
