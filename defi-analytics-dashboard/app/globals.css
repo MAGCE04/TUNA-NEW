@@ -4,12 +4,12 @@
 
 :root {
   /* Brand Colors */
-  --background: #0a0e17; /* Deep navy, almost black */
+  --background: #0f172a; /* Deep navy, almost black */
   --card: #111827;
   --card-hover: #1a2235;
   --text: #f8fafc;
   --text-muted: #94a3b8;
-  --border: #2d3748;
+  --border: #334155;
   
   /* Accent Colors */
   --primary: #00e4ff; /* Aqua */
@@ -39,7 +39,7 @@
 @layer components {
   /* Card Styling */
   .card {
-    @apply bg-card rounded-2xl border border-border p-5 shadow-lg transition-all duration-300 hover:shadow-xl;
+    @apply bg-card rounded-2xl border border-border p-6 shadow-lg transition-all duration-300 hover:shadow-xl;
     background: linear-gradient(145deg, rgba(17, 24, 39, 0.95), rgba(17, 24, 39, 0.8));
     backdrop-filter: blur(10px);
   }

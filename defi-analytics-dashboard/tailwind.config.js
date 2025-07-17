@@ -9,16 +9,16 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#6366f1',
-          hover: '#4f46e5',
-          dark: '#4f46e5',
-          light: '#818cf8',
+          DEFAULT: '#00e4ff',
+          hover: '#00c4ff',
+          dark: '#00a8cc',
+          light: '#33e8ff',
         },
         secondary: {
-          DEFAULT: '#10b981',
-          hover: '#059669',
-          dark: '#059669',
-          light: '#34d399',
+          DEFAULT: '#9333ea',
+          hover: '#7e22ce',
+          dark: '#6b21a8',
+          light: '#a855f7',
         },
         accent: {
           DEFAULT: '#00ffa3',
@@ -33,12 +33,12 @@ module.exports = {
           dark: '#020617',
         },
         card: {
-          DEFAULT: '#1e293b',
+          DEFAULT: '#111827',
           hover: '#1a2235',
           light: '#334155',
           dark: '#0f172a',
         },
-        border: '#2d3748',
+        border: '#334155',
         text: {
           DEFAULT: '#f8fafc',
           muted: '#94a3b8',
