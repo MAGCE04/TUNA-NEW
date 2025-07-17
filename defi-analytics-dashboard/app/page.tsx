@@ -1,7 +1,7 @@
 'use client';
 
-import NewDashboard from './dashboard';
+import SimplifiedDashboard from './dashboard';
 
 export default function Home() {
-  return <NewDashboard />;
+  return <SimplifiedDashboard />;
 }
