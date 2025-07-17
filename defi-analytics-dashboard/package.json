@@ -4,12 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "rmdir /s /q .next && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "clean": "rmdir /s /q .next node_modules/.cache",
-    "rebuild": "npm run clean && npm run build",
-    "force-rebuild": "bash force-rebuild.sh"
+    "export": "next build && next export"
   },
   "dependencies": {
     "@solana/web3.js": "^1.78.0",

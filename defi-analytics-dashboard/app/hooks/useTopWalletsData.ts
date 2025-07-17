@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { TopWallet, TimeRange } from '../types';
-import { filterDataByTimeRange } from '../lib/utils';
+import { filterDataByTimeRange } from '../lib/timeUtils';
 
 export const useTopWalletsData = (timeRange: TimeRange) => {
   const [loading, setLoading] = useState(true);

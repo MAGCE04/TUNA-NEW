@@ -1,61 +1,3 @@
-import { TimeRange } from '../types';
-import { subDays, startOfDay } from 'date-fns';
-
-/**
- * Filters data based on the selected time range
- * @param data Array of data with timestamp property
- * @param timeRange Selected time range
- * @returns Filtered data
- */
-export const filterDataByTimeRange = <T extends { timestamp: number }>(
-  data: T[],
-  timeRange: TimeRange
-): T[] => {
-  if (timeRange === 'all') return data;
-  
-  const now = new Date();
-  let cutoffTime: number;
-  
-  switch (timeRange) {
-    case '7d':
-      cutoffTime = subDays(startOfDay(now), 7).getTime();
-      break;
-    case '30d':
-      cutoffTime = subDays(startOfDay(now), 30).getTime();
-      break;
-    case '90d':
-      cutoffTime = subDays(startOfDay(now), 90).getTime();
-      break;
-    case 'day':
-      cutoffTime = startOfDay(now).getTime();
-      break;
-    case 'week':
-      cutoffTime = subDays(startOfDay(now), 7).getTime();
-      break;
-    case 'month':
-      cutoffTime = subDays(startOfDay(now), 30).getTime();
-      break;
-    case 'year':
-      cutoffTime = subDays(startOfDay(now), 365).getTime();
-      break;
-    default:
-      cutoffTime = subDays(startOfDay(now), 30).getTime();
-  }
-  
-  return data.filter(item => item.timestamp >= cutoffTime);
-};
-
-/**
- * Calculates growth percentage compared to previous period
- * @param currentValue Current period value
- * @param previousValue Previous period value
- * @returns Growth percentage
- */
-export const calculateGrowth = (currentValue: number, previousValue: number): number => {
-  if (previousValue === 0) return 0;
-  return ((currentValue - previousValue) / previousValue) * 100;
-};
-
 /**
  * Formats a number for display
  * @param value Number to format
@@ -93,22 +35,4 @@ export const formatCurrency = (value: number, currency = '$'): string => {
  */
 export const formatPercentage = (value: number): string => {
   return `${value.toFixed(2)}%`;
-};
-
-/**
- * Formats a SOL value for display
- * @param value Number of SOL
- * @returns Formatted SOL string
- */
-export const formatSol = (value: number): string => {
-  return `◎${value.toFixed(2)}`;
-};
-
-/**
- * Formats a USDC value for display
- * @param value Number of USDC
- * @returns Formatted USDC string
- */
-export const formatUsdc = (value: number): string => {
-  return `${value.toFixed(2)} USDC`;
 };

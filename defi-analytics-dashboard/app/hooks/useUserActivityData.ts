@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { UserActivity, UserMetrics, TimeRange } from '../types';
-import { filterDataByTimeRange, calculateGrowth } from '../lib/utils';
+import { filterDataByTimeRange, calculateGrowth } from '../lib/timeUtils';
 
 export const useUserActivityData = () => {
   const [loading, setLoading] = useState(true);

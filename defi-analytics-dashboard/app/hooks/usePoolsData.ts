@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { PoolData, TimeRange } from '../types';
-import { filterDataByTimeRange } from '../lib/utils';
+import { filterDataByTimeRange } from '../lib/timeUtils';
 
 // Define a type that extends PoolData with timestamp
 type PoolDataWithTimestamp = PoolData & { timestamp: number };

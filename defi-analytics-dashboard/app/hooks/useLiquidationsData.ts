@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { LiquidationEvent, DailyLiquidation, TimeRange } from '../types';
-import { filterDataByTimeRange } from '../lib/utils';
+import { filterDataByTimeRange } from '../lib/timeUtils';
 
 export const useLiquidationsData = (timeRange: TimeRange) => {
   const [loading, setLoading] = useState(true);

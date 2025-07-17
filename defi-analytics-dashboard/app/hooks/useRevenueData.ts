@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { RevenueData, TimeRange, RevenueMetrics } from '../types';
-import { filterDataByTimeRange, calculateGrowth } from '../lib/utils';
+import { filterDataByTimeRange, calculateGrowth } from '../lib/timeUtils';
 
 export const useRevenueData = (timeRange: TimeRange) => {
   const [loading, setLoading] = useState(true);

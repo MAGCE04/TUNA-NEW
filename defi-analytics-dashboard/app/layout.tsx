@@ -4,8 +4,15 @@ import './globals.css';
 import { Inter } from 'next/font/google';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { Metadata } from 'next';
 
 const inter = Inter({ subsets: ['latin'] });
+
+export const metadata: Metadata = {
+  title: 'DeFi Tuna Analytics Dashboard',
+  description: 'Comprehensive analytics dashboard for DeFi protocols on Solana',
+  viewport: 'width=device-width, initial-scale=1',
+};
 
 // Navigation items
 const navItems = [
@@ -44,6 +51,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </head>
       <body className={inter.className}>
         <div className="min-h-screen bg-background text-text flex flex-col">
           {/* Header */}

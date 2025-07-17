@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { LimitOrder, LimitOrderStats, TimeRange } from '../types';
-import { filterDataByTimeRange } from '../lib/utils';
+import { filterDataByTimeRange } from '../lib/timeUtils';
 
 const groupOrdersByPair = (orders: LimitOrder[]) => {
   return orders.reduce((acc, order) => {
