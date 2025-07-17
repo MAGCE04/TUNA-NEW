@@ -23,7 +23,6 @@ export const useLiquidationsData = (timeRange: TimeRange) => {
         const data: LiquidationEvent[] = await response.json();
         
         // Filter data based on time range
-        // Ensure we're working with complete LiquidationEvent objects
         const filteredData = filterDataByTimeRange<LiquidationEvent>(data, timeRange);
         
         setLiquidations(filteredData);
@@ -65,7 +64,9 @@ export const useLiquidationsData = (timeRange: TimeRange) => {
             dailyData[date].tokens[item.tokenSymbol].usdValue += item.usdValue;
           });
           
-          setDailyLiquidations(Object.values(dailyData));
+          setDailyLiquidations(Object.values(dailyData).sort((a, b) => 
+            new Date(a.date).getTime() - new Date(b.date).getTime()
+          ));
         }
       } catch (err) {
         setError(err instanceof Error ? err.message : 'An unknown error occurred');

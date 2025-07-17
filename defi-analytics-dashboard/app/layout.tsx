@@ -1,41 +1,13 @@
-'use client';
-
 import './globals.css';
 import { Inter } from 'next/font/google';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import Navigation from './components/Navigation';
 
 const inter = Inter({ subsets: ['latin'] });
 
-// Navigation items
-const navItems = [
-  { path: '/', label: '🏠 Overview', emoji: '🏠' },
-  { path: '/revenue', label: '💰 Revenue', emoji: '💰' },
-  { path: '/liquidations', label: '🌊 Liquidations', emoji: '🌊' },
-  { path: '/orders', label: '📊 Orders', emoji: '📊' },
-  { path: '/pools', label: '🏊‍♂️ Pools', emoji: '🏊‍♂️' },
-  { path: '/users', label: '👥 Users', emoji: '👥' },
-  { path: '/wallets', label: '👛 Wallets', emoji: '👛' },
-];
-
-// Navigation link component with active state
-function NavLink({ href, label }: { href: string; label: string }) {
-  const pathname = usePathname();
-  const isActive = pathname === href;
-  
-  return (
-    <Link 
-      href={href}
-      className={`nav-link whitespace-nowrap transition-all ${
-        isActive 
-          ? 'nav-link-active' 
-          : 'text-text-muted hover:text-text hover:bg-card-hover'
-      }`}
-    >
-      {label}
-    </Link>
-  );
-}
+export const metadata = {
+  title: 'DeFi Tuna Analytics Dashboard',
+  description: 'Comprehensive analytics dashboard for DeFi protocols on Solana',
+};
 
 export default function RootLayout({
   children,
@@ -44,11 +16,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <title>DeFi Tuna Analytics Dashboard</title>
-        <meta name="description" content="Comprehensive analytics dashboard for DeFi protocols on Solana" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </head>
       <body className={inter.className}>
         <div className="min-h-screen bg-background text-text flex flex-col">
           {/* Header */}
@@ -78,15 +45,7 @@ export default function RootLayout({
           </header>
           
           {/* Navigation */}
-          <nav className="bg-card/50 backdrop-blur-md border-b border-border sticky top-16 z-10">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="flex space-x-1 overflow-x-auto py-2 no-scrollbar">
-                {navItems.map((item) => (
-                  <NavLink key={item.path} href={item.path} label={item.label} />
-                ))}
-              </div>
-            </div>
-          </nav>
+          <Navigation />
           
           {/* Main content */}
           <main className="flex-1 relative">
