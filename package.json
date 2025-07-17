@@ -4,9 +4,9 @@
   "description": "A simplified, static dashboard for DeFi analytics visualization",
   "main": "index.html",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "dev": "cd defi-analytics-dashboard && next dev",
+    "build": "cd defi-analytics-dashboard && next build",
+    "start": "cd defi-analytics-dashboard && next start"
   },
   "keywords": [
     "defi",
