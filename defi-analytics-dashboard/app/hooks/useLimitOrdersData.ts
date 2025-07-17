@@ -38,7 +38,13 @@ export const useLimitOrdersData = (timeRange: TimeRange = '7d') => {
         }
 
         const data: LimitOrder[] = await response.json();
-        const filteredData = filterDataByTimeRange<LimitOrder>(data, timeRange);
+        // Ensure data has timestamp property for filtering
+        const dataWithTimestamp = data.map(order => ({
+          ...order,
+          timestamp: order.timestamp || Date.now()
+        }));
+        
+        const filteredData = filterDataByTimeRange<LimitOrder>(dataWithTimestamp, timeRange);
         setOrders(filteredData);
         setLastUpdated(new Date());
 

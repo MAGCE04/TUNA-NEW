@@ -28,10 +28,10 @@ export const useRevenueData = (timeRange: TimeRange) => {
         }
         
         const data = await response.json();
-        setRevenueData(data);
         
         // Filter data based on time range
         const filteredData: RevenueData[] = filterDataByTimeRange(data, timeRange);
+        setRevenueData(filteredData);
 
         
         // Calculate metrics
@@ -42,10 +42,11 @@ export const useRevenueData = (timeRange: TimeRange) => {
           
           // Calculate previous period for growth
           const previousPeriodStart = new Date();
-          previousPeriodStart.setDate(previousPeriodStart.getDate() - (days * 2));
+          const daysToSubtract = timeRange === '7d' ? 14 : timeRange === '30d' ? 60 : timeRange === '90d' ? 180 : days * 2;
+          previousPeriodStart.setDate(previousPeriodStart.getDate() - daysToSubtract);
           const previousPeriodData = data.filter(
-            item => item.timestamp >= previousPeriodStart.getTime() && 
-                   item.timestamp < previousPeriodStart.getTime() + (days * 24 * 60 * 60 * 1000)
+            (item: RevenueData) => item.timestamp >= previousPeriodStart.getTime() && 
+                   item.timestamp < (previousPeriodStart.getTime() + (days * 24 * 60 * 60 * 1000))
           );
           const previousPeriodRevenue = previousPeriodData.reduce((sum, item) => sum + item.totalUsdValue, 0);
           const revenueGrowth = calculateGrowth(totalRevenue, previousPeriodRevenue);

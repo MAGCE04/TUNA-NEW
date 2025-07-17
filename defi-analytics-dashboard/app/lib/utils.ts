@@ -1,4 +1,5 @@
 import { TimeRange } from '../types';
+import { subDays, startOfDay } from 'date-fns';
 
 /**
  * Filters data based on the selected time range
@@ -12,9 +13,34 @@ export const filterDataByTimeRange = <T extends { timestamp: number }>(
 ): T[] => {
   if (timeRange === 'all') return data;
   
-  const now = Date.now();
-  const timeRangeInDays = timeRange === '7d' ? 7 : timeRange === '30d' ? 30 : 90;
-  const cutoffTime = now - timeRangeInDays * 24 * 60 * 60 * 1000;
+  const now = new Date();
+  let cutoffTime: number;
+  
+  switch (timeRange) {
+    case '7d':
+      cutoffTime = subDays(startOfDay(now), 7).getTime();
+      break;
+    case '30d':
+      cutoffTime = subDays(startOfDay(now), 30).getTime();
+      break;
+    case '90d':
+      cutoffTime = subDays(startOfDay(now), 90).getTime();
+      break;
+    case 'day':
+      cutoffTime = startOfDay(now).getTime();
+      break;
+    case 'week':
+      cutoffTime = subDays(startOfDay(now), 7).getTime();
+      break;
+    case 'month':
+      cutoffTime = subDays(startOfDay(now), 30).getTime();
+      break;
+    case 'year':
+      cutoffTime = subDays(startOfDay(now), 365).getTime();
+      break;
+    default:
+      cutoffTime = subDays(startOfDay(now), 30).getTime();
+  }
   
   return data.filter(item => item.timestamp >= cutoffTime);
 };

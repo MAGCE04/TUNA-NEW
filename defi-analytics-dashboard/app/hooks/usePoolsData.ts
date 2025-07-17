@@ -25,17 +25,18 @@ export const usePoolsData = (timeRange: TimeRange) => {
         
         const data: PoolData[] = await response.json();
         
-        // Add timestamp for filtering
+        // Add timestamp for filtering (mock timestamp for demo)
         const dataWithTimestamp: PoolDataWithTimestamp[] = data.map((pool) => ({
           ...pool,
-          timestamp: Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000 // Mock timestamp for demo
+          timestamp: Date.now() - Math.floor(Math.random() * 30 * 24 * 60 * 60 * 1000)
         }));
         
         // Filter data based on time range
         const filteredData = filterDataByTimeRange<PoolDataWithTimestamp>(dataWithTimestamp, timeRange);
         
-        // The filtered data still has all PoolData properties plus timestamp
-        setPools(filteredData);
+        // Remove timestamp property before setting pools
+        const poolsData: PoolData[] = filteredData.map(({ timestamp, ...pool }) => pool);
+        setPools(poolsData);
         
         if (filteredData.length > 0) {
           // Calculate total TVL

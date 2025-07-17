@@ -170,6 +170,71 @@ export default function PoolsPage() {
         </div>
       </div>
 
+      {/* Pool Details Section */}
+      {selectedPoolData && (
+        <div className="card mb-8">
+          <h2 className="text-xl font-bold mb-4">Pool Details: {selectedPoolData.name}</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div>
+              <h3 className="text-sm font-medium text-text-muted">Total Value Locked</h3>
+              <p className="text-xl font-bold">{formatCurrency(selectedPoolData.tvl)}</p>
+            </div>
+            <div>
+              <h3 className="text-sm font-medium text-text-muted">Utilization Rate</h3>
+              <p className="text-xl font-bold">{formatPercentage(selectedPoolData.utilizationRate)}</p>
+            </div>
+            <div>
+              <h3 className="text-sm font-medium text-text-muted">APY</h3>
+              <p className="text-xl font-bold">{formatPercentage(selectedPoolData.apy)}</p>
+            </div>
+            <div>
+              <h3 className="text-sm font-medium text-text-muted">24h Volume</h3>
+              <p className="text-xl font-bold">{formatCurrency(selectedPoolData.volume24h)}</p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Pools Table */}
+      <div className="card">
+        <h2 className="text-xl font-bold mb-4">All Pools</h2>
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead>
+              <tr className="border-b border-border">
+                <th className="px-4 py-2 text-left">Pool</th>
+                <th className="px-4 py-2 text-right">TVL</th>
+                <th className="px-4 py-2 text-right">Utilization</th>
+                <th className="px-4 py-2 text-right">APY</th>
+                <th className="px-4 py-2 text-right">24h Volume</th>
+              </tr>
+            </thead>
+            <tbody>
+              {pools.map((pool) => (
+                <tr key={pool.poolAddress} className="border-b border-border hover:bg-card-hover">
+                  <td className="px-4 py-2">
+                    <div>
+                      <div className="font-medium">{pool.name}</div>
+                      <div className="text-sm text-text-muted">{pool.tokenA}/{pool.tokenB}</div>
+                    </div>
+                  </td>
+                  <td className="px-4 py-2 text-right">{formatCurrency(pool.tvl)}</td>
+                  <td className="px-4 py-2 text-right">{formatPercentage(pool.utilizationRate)}</td>
+                  <td className="px-4 py-2 text-right">{formatPercentage(pool.apy)}</td>
+                  <td className="px-4 py-2 text-right">{formatCurrency(pool.volume24h)}</td>
+                </tr>
+              ))}
+              {pools.length === 0 && (
+                <tr>
+                  <td colSpan={5} className="px-4 py-2 text-center text-text-muted">
+                    No pools found
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
       {/* Aquí continúa lo demás que ya tenías: detalles del pool, gráficas, tabla, etc. */}
       {/* No lo repito aquí porque ya lo hiciste bien, solo asegúrate de usar las variables correctas (`selectedPoolData`, `formatCurrency`, etc.) */}
     </div>

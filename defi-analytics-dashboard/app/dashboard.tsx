@@ -112,7 +112,7 @@ export default function NewDashboard() {
   const newUsers = Math.round((userMetrics?.dau || 0) * 0.15);
   const dailyAvgRevenue = (revenueMetrics?.totalRevenue || 0) / 30;
   const tradingEvents = orderStats?.filledOrders || 0;
-  const lendingEvents = Math.round((orderStats?.totalOrders || 0) * 0.3); // Assuming 30% are lending events
+  const lendingEvents = Math.round((orderStats?.totalOrders || 0) * 0.3);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

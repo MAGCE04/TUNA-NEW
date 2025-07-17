@@ -63,10 +63,11 @@ export const useUserActivityData = () => {
 
           // Calcular growth de usuarios nuevos
           const previousPeriodStart = new Date();
-          previousPeriodStart.setDate(previousPeriodStart.getDate() - days * 2);
+          const daysToSubtract = timeRange === 'week' ? 14 : timeRange === 'month' ? 60 : timeRange === 'year' ? 730 : days * 2;
+          previousPeriodStart.setDate(previousPeriodStart.getDate() - daysToSubtract);
           const previousPeriodData = formattedData.filter(
-            item => item.timestamp >= previousPeriodStart.getTime() &&
-                    item.timestamp < previousPeriodStart.getTime() + (days * 24 * 60 * 60 * 1000)
+            (item: UserActivity) => item.timestamp >= previousPeriodStart.getTime() &&
+                    item.timestamp < (previousPeriodStart.getTime() + (days * 24 * 60 * 60 * 1000))
           );
           const previousNewUsers = previousPeriodData.reduce((sum, item) => sum + item.newUsers, 0);
           const growth = calculateGrowth(totalNew, previousNewUsers);

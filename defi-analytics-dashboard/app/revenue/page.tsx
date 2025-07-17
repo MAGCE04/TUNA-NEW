@@ -46,16 +46,31 @@ export default function RevenuePage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <div className="loader">Loading...</div>
+        <div className="relative">
+          <div className="w-16 h-16 border-4 border-primary rounded-full animate-spin border-t-transparent"></div>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="text-2xl animate-pulse">💰</span>
+          </div>
+        </div>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="text-red-500 text-center mt-10">
-        <h2 className="text-xl font-bold">⚠️ Error loading data</h2>
-        <p>{error}</p>
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="card bg-danger/10 border border-danger/30 max-w-md">
+          <h2 className="text-xl font-bold text-danger flex items-center">
+            <span className="mr-2">⚠️</span> Error Loading Data
+          </h2>
+          <p className="mt-2">{error}</p>
+          <button 
+            className="btn btn-primary mt-4"
+            onClick={() => window.location.reload()}
+          >
+            Try Again
+          </button>
+        </div>
       </div>
     );
   }

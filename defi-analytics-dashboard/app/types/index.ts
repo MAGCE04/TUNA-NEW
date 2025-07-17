@@ -1,5 +1,3 @@
-import { PublicKey } from '@solana/web3.js';
-
 export type TimeRange = '7d' | '30d' | '90d' | 'day' | 'week' | 'month' | 'year' | 'all';
 export type TokenType = 'SOL' | 'USDC' | 'all';
 
@@ -148,6 +146,10 @@ export interface TopWallet {
   timestamp: number;
 }
 
+// Ensure all data types have timestamp for filtering
+export interface TimestampedData {
+  timestamp: number;
+}
 
 // Pool Utilization & Insights
 export interface PoolData {

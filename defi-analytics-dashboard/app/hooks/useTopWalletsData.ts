@@ -22,12 +22,18 @@ export const useTopWalletsData = (timeRange: TimeRange) => {
 
         const data: TopWallet[] = await response.json();
 
-        const filteredData = filterDataByTimeRange(data, timeRange);
+        // Add current timestamp to data for filtering if not present
+        const dataWithTimestamp = data.map(wallet => ({
+          ...wallet,
+          timestamp: wallet.timestamp || wallet.lastActive
+        }));
+        
+        const filteredData = filterDataByTimeRange(dataWithTimestamp, timeRange);
         const sortedWallets = [...filteredData]
           .sort((a, b) => b.tradeVolume - a.tradeVolume)
           .slice(0, limit); // ✅ aplica el limit dinámico
 
-        const formattedWallets = sortedWallets.map(wallet => ({
+        const formattedWallets: TopWallet[] = sortedWallets.map(wallet => ({
           ...wallet,
           shortAddress: `${wallet.address.substring(0, 4)}...${wallet.address.substring(wallet.address.length - 4)}`
         }));
